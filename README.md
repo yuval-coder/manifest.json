@@ -1,82 +1,50 @@
-# manifest.json
-https://https://www.youkid.co.il//manifest.json
-[manifest.json](https://github.com/user-attachments/files/21068330/manifest.json)
-# Welcome to GitHub Desktop!
-const axios = require('axios');
-const cheerio = require('cheerio');
-const fs = require('fs');
-
-const urls = [
-  https://www.youkid.co.il/talents/yuval
-https://www.youkid.co.il/talents/riko
-https://www.youkid.co.il/talents/meni
-https://www.youkid.co.il/talents/sapir
-https://www.youkid.co.il/talents/miki
-https://www.youkid.co.il/talents/michal
-https://www.youkid.co.il/talents/haim
-https://www.youkid.co.il/talents/kogomelo
-https://www.youkid.co.il/talents/kofiko
-https://www.youkid.co.il/talents/naama
-https://www.youkid.co.il/talents/ofer_maor
-https://www.youkid.co.il/talents/tzipi
-https://www.youkid.co.il/talents/meital
-https://www.youkid.co.il/talents/livluvit
-https://www.youkid.co.il/talents/royboy
-https://www.youkid.co.il/talents/gili_ba
-https://www.youkid.co.il/talents/hilali
-https://www.youkid.co.il/talents/yaeli
-https://www.youkid.co.il/talents/ronen
-https://www.youkid.co.il/talents/ester
-https://www.youkid.co.il/talents/vardinon
-https://www.youkid.co.il/talents/nati
-https://www.youkid.co.il/talents/rinat
-https://www.youkid.co.il/talents/tuvia
-https://www.youkid.co.il/talents/yanai_michal
-https://www.youkid.co.il/talents/tal
-https://www.youkid.co.il/talents/yaniv
-https://www.youkid.co.il/talents/liron
-https://www.youkid.co.il/talents/katzefetoot
-https://www.youkid.co.il/talents/inballerina
-https://www.youkid.co.il/talents/moshe_datz
-https://www.youkid.co.il/search?query=%D7%A8%D7%95%D7%A0%D7%99
-https://www.youkid.co.il/search?query=%D7%A4%D7%A1%D7%98%D7%99%D7%92%D7%9C
-
-];
-
-async function fetchAndSave() {
-  const file = fs.createWriteStream("youkid_data.jsonl", { flags: 'w' });
-
-  for (const url of urls) {
-    try {
-      const res = await axios.get(url);
-      const $ = cheerio.load(res.data);
-
-      $(".video-item, .post").each((i, el) => {
-        const title = $(el).find("h2, h3").text().trim();
-        const poster = $(el).find("img").attr("src");
-        const link = $(el).find("a").attr("href");
-        const id = "yokid_" + encodeURIComponent(link);
-
-        if (title && poster && link) {
-          const meta = {
-            id,
-            type: "movie",
-            name: title,
-            poster: poster.startsWith('http') ? poster : 'https://www.youkid.co.il' + poster,
-            description: `תוכן מיוקיד: ${title}`
-          };
-          file.write(JSON.stringify(meta) + "\n");
-        }
-      });
-
-    } catch (err) {
-      console.error("שגיאה בטעינת URL:", url, err.message);
+"id": "org.youkid.talents",
+  "version": "1.0.0",
+  "name": "YouKid כוכבים",
+  "description": "תוסף סטרימיו לצפייה בכוכבי הילדים של YouKid",
+  "resources": ["catalog", "meta"],
+  "types": ["movie"],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "youkid_talents",
+      "name": "YouKid כוכבים"
     }
-  }
-
-  file.end(() => {
-    console.log("✅ הקובץ youkid_data.jsonl נוצר בהצלחה!");
-  });
+  ],
+  "idPrefixes": ["youkid"],
+  "catalog": [
+    {"id":"yuval","type":"movie","name":"יובל המבולבל","url":"https://www.youkid.co.il/talents/yuval"},
+    {"id":"riko","type":"movie","name":"ריקו","url":"https://www.youkid.co.il/talents/riko"},
+    {"id":"meni","type":"movie","name":"מני","url":"https://www.youkid.co.il/talents/meni"},
+    {"id":"sapir","type":"movie","name":"ספיר","url":"https://www.youkid.co.il/talents/sapir"},
+    {"id":"miki","type":"movie","name":"מיקי","url":"https://www.youkid.co.il/talents/miki"},
+    {"id":"michal","type":"movie","name":"מיכל","url":"https://www.youkid.co.il/talents/michal"},
+    {"id":"haim","type":"movie","name":"חיים","url":"https://www.youkid.co.il/talents/haim"},
+    {"id":"kogomelo","type":"movie","name":"קוגומלו","url":"https://www.youkid.co.il/talents/kogomelo"},
+    {"id":"kofiko","type":"movie","name":"קופיקו","url":"https://www.youkid.co.il/talents/kofiko"},
+    {"id":"naama","type":"movie","name":"נעמה","url":"https://www.youkid.co.il/talents/naama"},
+    {"id":"ofer_maor","type":"movie","name":"עופר מאור","url":"https://www.youkid.co.il/talents/ofer_maor"},
+    {"id":"tzipi","type":"movie","name":"ציפי","url":"https://www.youkid.co.il/talents/tzipi"},
+    {"id":"meital","type":"movie","name":"מיטל","url":"https://www.youkid.co.il/talents/meital"},
+    {"id":"livluvit","type":"movie","name":"ליבלובית","url":"https://www.youkid.co.il/talents/livluvit"},
+    {"id":"royboy","type":"movie","name":"רוי בוי","url":"https://www.youkid.co.il/talents/royboy"},
+    {"id":"gili_ba","type":"movie","name":"גילי בא","url":"https://www.youkid.co.il/talents/gili_ba"},
+    {"id":"hilali","type":"movie","name":"הילה לי","url":"https://www.youkid.co.il/talents/hilali"},
+    {"id":"yaeli","type":"movie","name":"יעלי","url":"https://www.youkid.co.il/talents/yaeli"},
+    {"id":"ronen","type":"movie","name":"רונן","url":"https://www.youkid.co.il/talents/ronen"},
+    {"id":"ester","type":"movie","name":"אסתר","url":"https://www.youkid.co.il/talents/ester"},
+    {"id":"vardinon","type":"movie","name":"ורדינון","url":"https://www.youkid.co.il/talents/vardinon"},
+    {"id":"nati","type":"movie","name":"נתי","url":"https://www.youkid.co.il/talents/nati"},
+    {"id":"rinat","type":"movie","name":"רינת","url":"https://www.youkid.co.il/talents/rinat"},
+    {"id":"tuvia","type":"movie","name":"טוביה","url":"https://www.youkid.co.il/talents/tuvia"},
+    {"id":"yanai_michal","type":"movie","name":"ינאי מיכל","url":"https://www.youkid.co.il/talents/yanai_michal"},
+    {"id":"tal","type":"movie","name":"טל","url":"https://www.youkid.co.il/talents/tal"},
+    {"id":"yaniv","type":"movie","name":"יניב","url":"https://www.youkid.co.il/talents/yaniv"},
+    {"id":"liron","type":"movie","name":"לירון","url":"https://www.youkid.co.il/talents/liron"},
+    {"id":"katzefetoot","type":"movie","name":"קצפתוט","url":"https://www.youkid.co.il/talents/katzefetoot"},
+    {"id":"inballerina","type":"movie","name":"איןבלרינה","url":"https://www.youkid.co.il/talents/inballerina"},
+    {"id":"moshe_datz","type":"movie","name":"משה דץ","url":"https://www.youkid.co.il/talents/moshe_datz"},
+    {"id":"roni_search","type":"movie","name":"רוני (חיפוש)","url":"https://www.youkid.co.il/search?query=%D7%A8%D7%95%D7%A0%D7%99"},
+    {"id":"pstigel_search","type":"movie","name":"פסטיגל (חיפוש)","url":"https://www.youkid.co.il/search?query=%D7%A4%D7%A1%D7%98%D7%99%D7%92%D7%9C"}
+  ]
 }
-
-fetchAndSave();
