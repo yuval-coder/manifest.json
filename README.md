@@ -1,4 +1,5 @@
-"id": "org.youkid.talents",
+{
+  "id": "org.youkid.talents",
   "version": "1.0.0",
   "name": "YouKid כוכבים",
   "description": "תוסף סטרימיו לצפייה בכוכבי הילדים של YouKid",
