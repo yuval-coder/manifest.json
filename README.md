@@ -9,11 +9,11 @@
     {
       "type": "movie",
       "id": "youkid_talents",
-      "name": "YouKid כוכבים"
+      "name": "YouKid כוכבים",
+      "extra": [{ "name": "search", "isRequired": false }]
     }
-  ],
-  "idPrefixes": ["youkid"],
-  "catalog": [
+  ]
+}
     {"id":"yuval","type":"movie","name":"יובל המבולבל","url":"https://www.youkid.co.il/talents/yuval"},
     {"id":"riko","type":"movie","name":"ריקו","url":"https://www.youkid.co.il/talents/riko"},
     {"id":"meni","type":"movie","name":"מני","url":"https://www.youkid.co.il/talents/meni"},
